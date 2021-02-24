@@ -74,11 +74,7 @@ class CompaniaController extends Controller
      */
     public function show($nombre)
     {
-        $compania = Companias::where('nombre', $nombre)->get();
-        $codigo_organizador = CodigoOrganizador::all();
-        $codigo_productor = CodigoProductor::all();
-
-        return new CompaniasResource($compania);
+        return Companias::where('nombre', $nombre)->get();
     }
 
     /**

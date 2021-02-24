@@ -11,9 +11,6 @@ class FormaPagoController extends Controller
 {
     public function index()
     {
-        $formapago = FormaPago::all();
-
-        return FormaPagosResource::collection($formapago);
-
+        return FormaPago::all();
     }
 }

@@ -18,13 +18,13 @@ class RiesgoAutomotorController extends Controller
     {
         $riesgo_automotor = RiesgoAutomotor::all();
 
-        return RiesgoAutomotorsResource::collection($riesgo_automotor);
+        return $riesgo_automotor;
     }
 
     public function searchPoliza($id)
     {
         $polizaId = RiesgoAutomotor::where('poliza_id', $id)->with('automotor_marca', 'automotor_modelo', 'automotor_version', 'automotor_anio', 'cobertura')->get();
-        return RiesgoAutomotorsResource::collection($polizaId);
+        return $polizaId;
     }
 
     /**
@@ -45,7 +45,7 @@ class RiesgoAutomotorController extends Controller
      */
     public function store(Request $request)
     {
-        
+
 
         $riesgo_automotor = RiesgoAutomotor::create([
             'poliza_id' => $request->input('poliza_id'),
@@ -116,7 +116,7 @@ class RiesgoAutomotorController extends Controller
         $riesgo_automotor = RiesgoAutomotor::with(['automotor_marca', 'automotor_modelo', 'automotor_version', 'automotor_anio', 'cobertura'])->where('poliza_id', $poliza_id)->get();
 
 
-        return RiesgoAutomotorsResource::collection($riesgo_automotor);
+        return $riesgo_automotor;
     }
 
     /**
@@ -186,7 +186,7 @@ class RiesgoAutomotorController extends Controller
             'vigencia_hasta' => $request->input('vigencia_hasta'),
         ]);
 
-        return ['message'=> 'Updated'];
+        return ['message' => 'Updated'];
     }
 
 
@@ -199,9 +199,9 @@ class RiesgoAutomotorController extends Controller
     public function destroy($id)
     {
         $riesgo_automotor = RiesgoAutomotor::find($id);
-        
+
         $riesgo_automotor->delete();
 
-        return ['message'=> 'Eliminado'];
+        return ['message' => 'Eliminado'];
     }
 }

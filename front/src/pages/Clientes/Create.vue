@@ -129,12 +129,15 @@
                     <div class="col-md-3">
                       <label>Sexo</label>
                       <div class="d-flex flex-row">
-                        <base-radio class="mr-5" v-model="cliente.sexo" name="M"
-                          >Masculino</base-radio
-                        >
-                        <base-radio v-model="cliente.sexo" name="F"
-                          >Femenino</base-radio
-                        >
+                        <base-radio
+                          class="mr-5"
+                          v-model="cliente.sexo"
+                          name="M"
+                        >Masculino</base-radio>
+                        <base-radio
+                          v-model="cliente.sexo"
+                          name="F"
+                        >Femenino</base-radio>
                       </div>
                     </div>
                     <div class="col-md-2">
@@ -149,7 +152,10 @@
                           :class="{ errorS: errorSelect.nacimiento }"
                           @change="touchSelect('nacimiento')"
                         ></el-date-picker>
-                        <p class="errorSelect" v-show="errorSelect.nacimiento">
+                        <p
+                          class="errorSelect"
+                          v-show="errorSelect.nacimiento"
+                        >
                           Este campo es obligatorio
                         </p>
                       </base-input>
@@ -256,7 +262,10 @@
                           class="select-primary"
                         ></el-option>
                       </el-select>
-                      <p class="errorSelect" v-show="errorSelect.localidad">
+                      <p
+                        class="errorSelect"
+                        v-show="errorSelect.localidad"
+                      >
                         Este campo es obligatorio
                       </p>
                     </div>
@@ -349,7 +358,10 @@
                           class="select-primary"
                         ></el-option>
                       </el-select>
-                      <p class="errorSelect" v-show="errorSelect.productor">
+                      <p
+                        class="errorSelect"
+                        v-show="errorSelect.productor"
+                      >
                         Debe seleccionar un Productor
                       </p>
                     </div>
@@ -387,8 +399,7 @@
                         class="animation-on-hover pull-left"
                         type="primary"
                         @click="crear"
-                        >Crear</base-button
-                      >
+                      >Crear</base-button>
                     </div>
                   </div>
                 </card>
@@ -475,7 +486,7 @@ export default {
     buscarCuit: debounce(function() {
       if (this.cliente.nro_dni && this.cliente.cuit.length == 11) {
         http.search('cliente/busquedaCuit?q=' + this.cliente.cuit).then(r => {
-          this.cuit = r.data.data;
+          this.cuit = r.data;
           if (this.cuit.length > 0) {
             this.cuitUsed = true;
           } else {
@@ -491,28 +502,28 @@ export default {
         return 'Este DNI ya esta en uso';
       }
     },
-    buscarDNI: debounce(function() {
-      if (this.cliente.nro_dni && this.cliente.nro_dni.length >= 6) {
-        http.search('cliente/busquedaDNI?q=' + this.cliente.nro_dni).then(r => {
-          this.dni = r.data.data;
-          if (this.dni.length > 0) {
-            console.log('usado!');
-            this.dniUsed = true;
-          } else {
-            this.dniUsed = false;
-          }
-        });
-      }
-    }, 500),
+    // buscarDNI: debounce(function() {
+    //   if (this.cliente.nro_dni && this.cliente.nro_dni.length >= 6) {
+    //     http.search('cliente/busquedaDNI?q=' + this.cliente.nro_dni).then(r => {
+    //       this.dni = r.data;
+    //       if (this.dni.length > 0) {
+    //         console.log('usado!');
+    //         this.dniUsed = true;
+    //       } else {
+    //         this.dniUsed = false;
+    //       }
+    //     });
+    //   }
+    // }, 500),
     cargarLocalidades() {
       http.load('localidades').then(r => {
-        this.localidades = r.data.data;
+        this.localidades = r.data;
       });
     },
     cargarProductores() {
       http
         .load('administracion/productores')
-        .then(r => (this.productores = r.data.data));
+        .then(r => (this.productores = r.data));
     },
     touchSelect(val) {
       this.selected[val] = true;

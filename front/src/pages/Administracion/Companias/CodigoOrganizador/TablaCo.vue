@@ -176,7 +176,7 @@ export default {
   methods: {
     cargar() {
       http.loadOne(this.url, this.compania.id).then(r => {
-        this.tableData = r.data.data;
+        this.tableData = r.data;
       });
     },
     vaciarForm() {

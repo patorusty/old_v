@@ -1,13 +1,25 @@
 <template>
   <SlideYUpTransition :duration="500">
-    <div class="modal-backdrop" @keydown.esc="close" @click="close">
-      <div @click.stop style="width:75%;">
+    <div
+      class="modal-backdrop"
+      @keydown.esc="close"
+      @click="close"
+    >
+      <div
+        @click.stop
+        style="width:75%;"
+      >
         <card>
           <form>
             <div class="d-flex justify-content-between">
               <!-- ACA VA EL TITULO -->
               <h4>Automotor</h4>
-              <button class="close" type="button" aria-label="Close" @click="close">
+              <button
+                class="close"
+                type="button"
+                aria-label="Close"
+                @click="close"
+              >
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -242,7 +254,10 @@
                       :error="getError('nro_chasis')"
                     ></base-input>
                     <label>Valor Vehiculo</label>
-                    <div class="form-group" :class="{ 'has-danger': errors.first('patente') }">
+                    <div
+                      class="form-group"
+                      :class="{ 'has-danger': errors.first('patente') }"
+                    >
                       <money
                         v-bind="money"
                         class="form-control"
@@ -252,9 +267,9 @@
                         :error="getError('valor_vehiculo')"
                       />
                       <p
-                            class="errorSelect"
-                            v-show="errors.first('patente')"
-                          >Este campo es obligatorio</p>
+                        class="errorSelect"
+                        v-show="errors.first('patente')"
+                      >Este campo es obligatorio</p>
                     </div>
                     <!-- <base-input
                       v-model="riesgo_automotor.valor_vehiculo"
@@ -367,8 +382,14 @@
                       ></el-option>
                     </el-select>
                     <label class="mt-2">Color</label>
-                    <base-input v-model="riesgo_automotor.color" name="color"></base-input>
-                    <base-input label="Valor Total" v-model="suma"></base-input>
+                    <base-input
+                      v-model="riesgo_automotor.color"
+                      name="color"
+                    ></base-input>
+                    <base-input
+                      label="Valor Total"
+                      v-model="suma"
+                    ></base-input>
                     <div class="form-group">
                       <the-mask
                         class="form-control"
@@ -378,7 +399,10 @@
                       ></the-mask>
                     </div>
                     <base-input label="Observaciones">
-                      <textarea class="form-control" v-model="riesgo_automotor.observaciones"></textarea>
+                      <textarea
+                        class="form-control"
+                        v-model="riesgo_automotor.observaciones"
+                      ></textarea>
                     </base-input>
                   </div>
                 </div>
@@ -405,14 +429,20 @@
                   </div>
                   <div class="col-md-4">
                     <label>Medida</label>
-                    <base-input v-model="riesgo_automotor.cubiertas_medida" name="cubiertas_medida"></base-input>
+                    <base-input
+                      v-model="riesgo_automotor.cubiertas_medida"
+                      name="cubiertas_medida"
+                    ></base-input>
                   </div>
                 </div>
                 <span slot="label">
                   <i class="tim-icons icon-settings"></i>GNC
                 </span>
                 <div class="row col-md-4">
-                  <p class="text-primary col-md-3" style="padding-left:0px">GNC</p>
+                  <p
+                    class="text-primary col-md-3"
+                    style="padding-left:0px"
+                  >GNC</p>
                   <base-checkbox
                     class="col-md-6"
                     style="margin-top:-13px"
@@ -483,9 +513,15 @@
                 <div class="row">
                   <div class="col-md-4">
                     <label>Accesorio Nro 1</label>
-                    <base-input v-model="riesgo_automotor.accesorio_01" name="accesorio_1"></base-input>
+                    <base-input
+                      v-model="riesgo_automotor.accesorio_01"
+                      name="accesorio_1"
+                    ></base-input>
                     <label>Accesorio Nro 2</label>
-                    <base-input v-model="riesgo_automotor.accesorio_02" name="accesorio_2"></base-input>
+                    <base-input
+                      v-model="riesgo_automotor.accesorio_02"
+                      name="accesorio_2"
+                    ></base-input>
                   </div>
                   <div class="col-md-4">
                     <label>Valor Accesorio 1</label>
@@ -548,12 +584,21 @@
                   <div class="dropzone-custom-content">
                     <div class="texto-drop">Arrastra las fotos aquí...</div>
                   </div>
-                  <input style="display: none;" type="text" name="riesgo_id" value="xx" />
+                  <input
+                    style="display: none;"
+                    type="text"
+                    name="riesgo_id"
+                    value="xx"
+                  />
                 </vue-dropzone>
               </tab-pane>
             </tabs>
             <div class="col-md-12 d-flex justify-content-center align-items-stretch">
-              <base-button @click="crear" type="submit" class="btn btn-primary ladda-button">Crear</base-button>
+              <base-button
+                @click="crear"
+                type="submit"
+                class="btn btn-primary ladda-button"
+              >Crear</base-button>
             </div>
           </form>
         </card>
@@ -874,7 +919,7 @@ export default {
           http
             .create('/riesgo_automotor', this.riesgo_automotor)
             .then(r => {
-              let rId = r.data.data.id;
+              let rId = r.data.id;
               this.dropzoneOptions.params.riesgoId = rId;
               this.uploadImages();
             })
@@ -889,36 +934,36 @@ export default {
     },
     cargarMarcas() {
       http.load('administracion/marcas', this.marca_id).then(r => {
-        this.marcas = r.data.data;
+        this.marcas = r.data;
       });
     },
     buscarMarca() {
       http.loadOne('administracion/marcas', this.marca_id).then(r => {
-        this.marca = r.data.data;
+        this.marca = r.data;
       });
     },
     filtrarModeloPorMarca(id) {
       this.riesgo_automotor.automotor_modelo_id = '';
       this.versiones = [];
       http.loadOne('/modelos/filtrar', id).then(r => {
-        this.modelos = r.data.data;
+        this.modelos = r.data;
       });
     },
     filtrarVersionesDeModelo(url, anio, modelo) {
       this.riesgo_automotor.automotor_version_id = '';
       this.versiones = [];
       http.search2(url, anio, modelo).then(r => {
-        this.versiones = r.data.data;
+        this.versiones = r.data;
       });
     },
     cargarCoberturas() {
       http.loadOne('cobertura/compania', this.compania_id).then(r => {
-        this.coberturas = r.data.data;
+        this.coberturas = r.data;
       });
     },
     cargarAnios() {
       http.load('anios', this.anio_id).then(r => {
-        this.anios = r.data.data;
+        this.anios = r.data;
       });
     },
 
@@ -950,7 +995,7 @@ export default {
     coberturaSeleccionada() {
       http
         .loadOne('/cobertura', this.riesgo_automotor.cobertura_id)
-        .then(r => (this.cobertura = r.data.data));
+        .then(r => (this.cobertura = r.data));
     },
     reset() {
       this.riesgo_automotor.automotor_marca_id = '';

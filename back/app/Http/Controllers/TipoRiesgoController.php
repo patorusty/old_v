@@ -11,9 +11,6 @@ class TipoRiesgoController extends Controller
 {
     public function index()
     {
-        $tipo_riesgo = TipoRiesgo::all();
-
-        return TipoRiesgosResource::collection($tipo_riesgo);
+        return TipoRiesgo::all();
     }
-
 }

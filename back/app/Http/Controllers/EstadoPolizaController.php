@@ -11,9 +11,6 @@ class EstadoPolizaController extends Controller
 {
     public function index()
     {
-        $estadopolizas = EstadoPoliza::all();
-
-        return EstadoPolizasResource::collection($estadopolizas);
-
+        return EstadoPoliza::all();
     }
 }

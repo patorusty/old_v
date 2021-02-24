@@ -1,7 +1,10 @@
 <template>
   <div class="col-md-12">
     <card class="mt-4 ">
-      <div class="col-sm-12 row align-items-center" slot="header">
+      <div
+        class="col-sm-12 row align-items-center"
+        slot="header"
+      >
         <div class="col">
           <h4 class="d-inline text-primary ">DETALLE DEL RIESGO</h4>
         </div>
@@ -16,7 +19,10 @@
               prop="automotor_tipo"
             >
             </el-table-column>
-            <el-table-column min-width="200" label="marca">
+            <el-table-column
+              min-width="200"
+              label="marca"
+            >
               <div slot-scope="{ row }">
                 {{ row.automotor_marca.nombre }}
                 {{ row.automotor_version.nombre }}
@@ -146,10 +152,10 @@ export default {
   methods: {
     cargar() {
       http.loadOne(this.url, this.poliza.id).then(r => {
-        this.tableData = r.data.data;
+        this.tableData = r.data;
       });
       http.loadOne('/polizas/busquedaPolizaId', this.poliza.id).then(r => {
-        if (r.data.data.length < 1) {
+        if (r.data.length < 1) {
           this.isModalVisible = true;
         }
       });
@@ -170,7 +176,7 @@ export default {
       http
         .loadOne('/riesgo_automotor', id)
         .then(r => {
-          this.riesgo_automotor = r.data.data;
+          this.riesgo_automotor = r.data;
           this.dataLoaded = true;
           this.$nextTick(() => {
             EventBus.$emit('MMV', this.riesgo_automotor);
@@ -192,7 +198,7 @@ export default {
   },
   mounted() {
     this.cargar();
-    EventBus.$on('updateData', value => this.riesgo_automotor = value);
+    EventBus.$on('updateData', value => (this.riesgo_automotor = value));
   }
 };
 </script>

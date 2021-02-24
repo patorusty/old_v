@@ -10,8 +10,6 @@ class LocalidadController extends Controller
 {
     public function index()
     {
-        $localidades = Localidades::all();
-
-        return LocalidadesResource::collection($localidades);
+        return Localidades::all();
     }
 }

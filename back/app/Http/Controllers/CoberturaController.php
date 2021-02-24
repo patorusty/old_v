@@ -12,33 +12,24 @@ class CoberturaController extends Controller
 {
     public function index()
     {
-        $coberturas = Coberturas::all();
-
-        return CoberturasResource::collection($coberturas);
+        return Coberturas::all();
     }
 
 
     public function show($id)
     {
-        $coberturas = Coberturas::findOrFail($id);
-
-        return new CoberturasResource($coberturas);
+        return Coberturas::findOrFail($id);
     }
 
     public function indexFiltrado($compania_id)
     {
-        $coberturas = Coberturas::where('compania_id', $compania_id)->get();
-
-
-        return CoberturasResource::collection($coberturas);
+        return Coberturas::where('compania_id', $compania_id)->get();
     }
 
 
     public function store(Request $request)
-    {        
-        $this->validate($request, [
-
-        ]);
+    {
+        $this->validate($request, []);
 
         $cobertura = Coberturas::create([
             'nombre' => $request->input('nombre'),
@@ -52,7 +43,6 @@ class CoberturaController extends Controller
         ]);
 
         return (['message' => 'guardado']);
-
     }
 
     public function update(Request $request, $id)
@@ -73,9 +63,9 @@ class CoberturaController extends Controller
     public function destroy($id)
     {
         $cobertura = Coberturas::find($id);
-        
+
         $cobertura->delete();
 
-        return ['message'=> 'Eliminado'];
+        return ['message' => 'Eliminado'];
     }
 }

@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Endosos;
-use App\TipoEndosos;
-use App\DetalleEndosos;
-use App\Polizas;
 use Illuminate\Http\Request;
-use App\Http\Resources\Endoso as EndososResource;
 
 
 class EndosoController extends Controller
@@ -19,22 +15,21 @@ class EndosoController extends Controller
      */
     public function index()
     {
-        $endosos = Endosos::with(['tipo_endosos','polizas.clientes','polizas.companias', 'polizas.riesgo_automotor'])->get();
+        $endosos = Endosos::with(['tipo_endosos', 'polizas.clientes', 'polizas.companias', 'polizas.riesgo_automotor'])->get();
 
-        return EndososResource::collection($endosos);
+        return $endosos;
     }
     public function indexFiltrado($poliza_id)
     {
         $endosos = Endosos::with(['tipo_endosos', 'detalle_endosos'])->where('poliza_id', $poliza_id)->get();
 
-        return EndososResource::collection($endosos);
+        return $endosos;
     }
 
     public function anulaciones($poliza_id)
     {
         $endoso = Endosos::where('poliza_id', $poliza_id)->where('tipo_endoso_id', 1)->get();
-        return new EndososResource($endoso);
-
+        return $endoso;
     }
 
     /**
@@ -44,7 +39,6 @@ class EndosoController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -70,7 +64,6 @@ class EndosoController extends Controller
         ]);
 
         return (['message' => 'guardado']);
-
     }
 
     /**
@@ -81,9 +74,9 @@ class EndosoController extends Controller
      */
     public function show($id)
     {
-        $endoso = Endosos::with(['tipo_endosos','polizas.clientes', 'polizas.riesgo_automotor', 'polizas.companias', 'polizas.riesgo_automotor', 'polizas.riesgo_automotor.automotor_marca', 'polizas.riesgo_automotor.automotor_version', 'polizas.riesgo_automotor.cobertura'])->findOrFail($id);
-        
-        return new EndososResource($endoso);
+        $endoso = Endosos::with(['tipo_endosos', 'polizas.clientes', 'polizas.riesgo_automotor', 'polizas.companias', 'polizas.riesgo_automotor', 'polizas.riesgo_automotor.automotor_marca', 'polizas.riesgo_automotor.automotor_version', 'polizas.riesgo_automotor.cobertura'])->findOrFail($id);
+
+        return $endoso;
     }
 
 
@@ -96,8 +89,6 @@ class EndosoController extends Controller
      */
     public function edit($id)
     {
-    
-
     }
 
     /**
@@ -124,7 +115,6 @@ class EndosoController extends Controller
 
     public function search()
     {
-       
     }
 
     /**
@@ -139,6 +129,6 @@ class EndosoController extends Controller
 
         $endoso->delete();
 
-        return ['message'=>'Eliminado'];
+        return ['message' => 'Eliminado'];
     }
 }

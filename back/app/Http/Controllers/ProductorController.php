@@ -15,9 +15,7 @@ class ProductorController extends Controller
      */
     public function index()
     {
-        $productores = Productores::all();
-
-        return ProductoresResource::collection($productores);
+        return Productores::all();
     }
 
     /**
@@ -37,15 +35,15 @@ class ProductorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
+    {
         // $this->validate($request, [
-            // 'nombre' => 'required',
-            // 'apellido' => 'required',
-            // 'cuit' => 'required',
-            // 'matricula' => 'required',
-            // 'email' => 'required',
-            // 'telefono_1' => 'required',
-            // 'telefono_2' => 'required',
+        // 'nombre' => 'required',
+        // 'apellido' => 'required',
+        // 'cuit' => 'required',
+        // 'matricula' => 'required',
+        // 'email' => 'required',
+        // 'telefono_1' => 'required',
+        // 'telefono_2' => 'required',
         // ]);
 
         $productor = Productores::create([
@@ -60,7 +58,6 @@ class ProductorController extends Controller
         ]);
 
         return (['message' => 'guardado']);
-
     }
 
     /**
@@ -71,9 +68,7 @@ class ProductorController extends Controller
      */
     public function show($id)
     {
-        $productor = Productores::findOrFail($id);
-
-        return new ProductoresResource($productor);
+        return Productores::findOrFail($id);
     }
 
     /**
@@ -95,7 +90,7 @@ class ProductorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
+    {
         $productor = Productores::find($id);
         $productor->update([
             'nombre' => $request->input('nombre'),
@@ -144,6 +139,6 @@ class ProductorController extends Controller
 
         $productor->delete();
 
-        return ['message'=>'Eliminado'];
+        return ['message' => 'Eliminado'];
     }
 }

@@ -256,7 +256,7 @@ export default {
 
     cargar() {
       http.loadOne(this.urlcompanias, this.$route.params.nombre).then(r => {
-        this.compania = r.data.data[0];
+        this.compania = r.data[0];
         this.dataLoaded = true;
       });
     },

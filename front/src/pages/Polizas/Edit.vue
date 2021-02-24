@@ -460,13 +460,14 @@ export default {
 
     cargarPoliza() {
       http.loadOne('polizas', this.numeroSolicitud).then(response => {
-        this.poliza = response.data.data[0];
+        this.poliza = response.data;
+        console.log(this.poliza);
         this.dataLoaded = true;
         EventBus.$emit('poliza_id', this.poliza.id);
         http
           .loadOne('codigoproductor/compania', this.poliza.compania_id)
           .then(response => {
-            this.codigo_productores = response.data.data;
+            this.codigo_productores = response.data;
           })
           .catch(err => {
             console.log(err);
@@ -481,34 +482,34 @@ export default {
     },
     cargarClientes() {
       http.load('clientes').then(response => {
-        this.clientes = response.data.data;
+        this.clientes = response.data;
       });
     },
     cargarTipo_Riesgos() {
       http.load('tiporiesgo').then(response => {
-        this.tipo_riesgos = response.data.data;
+        this.tipo_riesgos = response.data;
       });
     },
     cargarTipo_Vigencias() {
       http.load('tipovigencia').then(response => {
-        this.tipo_vigencias = response.data.data;
+        this.tipo_vigencias = response.data;
       });
     },
     cargarCompanias() {
       http.load('administracion/companias').then(response => {
-        this.companias = response.data.data;
+        this.companias = response.data;
       });
     },
     cargarFormaPagos() {
       http.load('formapagos').then(response => {
-        this.forma_pagos = response.data.data;
+        this.forma_pagos = response.data;
       });
     },
     cargarCodigos_ProductorOnChange(id) {
       http
         .loadOne('compania', id)
         .then(response => {
-          this.codigo_productores = response.data.data;
+          this.codigo_productores = response.data;
         })
         .catch(err => {
           console.log(err);

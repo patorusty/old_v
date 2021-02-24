@@ -16,9 +16,7 @@ class OrganizadorController extends Controller
      */
     public function index()
     {
-        $organizadores = Organizadores::all();
-
-        return OrganizadoresResource::collection($organizadores);
+        return Organizadores::all();
     }
 
     /**
@@ -71,9 +69,7 @@ class OrganizadorController extends Controller
      */
     public function show($id)
     {
-        $organizador = Organizadores::findOrFail($id);
-
-        return new OrganizadoresResource($organizador);
+        return Organizadores::findOrFail($id);
     }
 
     /**
@@ -112,15 +108,15 @@ class OrganizadorController extends Controller
     public function searchCuit()
     {
 
-        if ($searchC = \Request::get('q')){
+        if ($searchC = \Request::get('q')) {
             $cuit = Organizadores::where('cuit', $searchC)->get();
         }
         return OrganizadoresResource::collection($cuit);
-}
+    }
 
     public function searchMatricula()
     {
-        if ($searchC = \Request::get('q')){
+        if ($searchC = \Request::get('q')) {
             $matricula = Organizadores::where('matricula', $searchC)->get();
         }
         return OrganizadoresResource::collection($matricula);
@@ -135,9 +131,9 @@ class OrganizadorController extends Controller
     public function destroy($id)
     {
         $organizador = Organizadores::find($id);
-        
+
         $organizador->delete();
 
-        return ['message'=> 'Eliminado'];
+        return ['message' => 'Eliminado'];
     }
 }

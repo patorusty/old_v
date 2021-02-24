@@ -7,7 +7,10 @@
             <div class="col-md-10">
               <div class="botoncrear col-md-2">
                 <router-link to="/polizas/create">
-                  <base-button class="right" type="primary">Crear</base-button>
+                  <base-button
+                    class="right"
+                    type="primary"
+                  >Crear</base-button>
                 </router-link>
               </div>
             </div>
@@ -22,24 +25,37 @@
                 prop="numero"
                 :min-width="127"
               ></el-table-column>
-              <el-table-column label="Compania" :min-width="113">
+              <el-table-column
+                label="Compania"
+                :min-width="113"
+              >
                 <div slot-scope="{ row }">
                   {{ row.companias.nombre }} <br />
                   Cod.({{ row.codigo_productor.codigo_productor }})
                 </div>
               </el-table-column>
-              <el-table-column label="Asegurado" :min-width="128">
+              <el-table-column
+                label="Asegurado"
+                :min-width="128"
+              >
                 <div slot-scope="{ row }">
-                  <router-link v-if="row.clientes.razon_social === null" to="#"
-                    >{{ row.clientes.apellido }} <br />
-                    {{ row.clientes.nombre }}</router-link
-                  >
-                  <router-link v-else to="#">{{
+                  <router-link
+                    v-if="row.clientes.razon_social === null"
+                    to="#"
+                  >{{ row.clientes.apellido }} <br />
+                    {{ row.clientes.nombre }}</router-link>
+                  <router-link
+                    v-else
+                    to="#"
+                  >{{
                     row.clientes.razon_social
                   }}</router-link>
                 </div>
               </el-table-column>
-              <el-table-column label="Patente" :min-width="100">
+              <el-table-column
+                label="Patente"
+                :min-width="100"
+              >
                 <div slot-scope="{ row }">{{ row.vigencia_desde }}</div>
               </el-table-column>
               <el-table-column
@@ -47,7 +63,11 @@
                 :min-width="100"
                 prop="tipo_vigencias.vigencia"
               ></el-table-column>
-              <el-table-column label="Desde/Hasta" :min-width="141" sortable>
+              <el-table-column
+                label="Desde/Hasta"
+                :min-width="141"
+                sortable
+              >
                 <div slot-scope="{ row }">
                   {{ row.vigencia_desde }} <br />
                   {{ row.vigencia_hasta }}
@@ -58,26 +78,25 @@
                 prop="estado_polizas.nombre"
                 :min-width="109"
               ></el-table-column>
-              <el-table-column :min-width="117" label="Envio">
+              <el-table-column
+                :min-width="117"
+                label="Envio"
+              >
                 <div slot-scope="{ row }">
-                  <div
-                    v-if="
+                  <div v-if="
                       row.fecha_recepcion !== null &&
                         row.fecha_entrega_original === null &&
                         row.fecha_entrega_correo === null &&
                         row.fecha_entrega_email === null
-                    "
-                  >
+                    ">
                     Recibida
                   </div>
-                  <div
-                    v-else-if="
+                  <div v-else-if="
                       row.fecha_recepcion !== null &&
                         row.fecha_entrega_original !== null &&
                         row.fecha_entrega_correo === null &&
                         row.fecha_entrega_email === null
-                    "
-                  >
+                    ">
                     <el-tooltip
                       content="Entregada"
                       effect="light"
@@ -87,14 +106,12 @@
                       <i class="tim-icons icon-check-2"></i>
                     </el-tooltip>
                   </div>
-                  <div
-                    v-else-if="
+                  <div v-else-if="
                       row.fecha_recepcion !== null &&
                         row.fecha_entrega_original === null &&
                         row.fecha_entrega_correo !== null &&
                         row.fecha_entrega_email === null
-                    "
-                  >
+                    ">
                     <el-tooltip
                       content="Enviada por Correo"
                       effect="light"
@@ -104,14 +121,12 @@
                       <i class="tim-icons icon-send"></i>
                     </el-tooltip>
                   </div>
-                  <div
-                    v-else-if="
+                  <div v-else-if="
                       row.fecha_recepcion !== null &&
                         row.fecha_entrega_original === null &&
                         row.fecha_entrega_correo === null &&
                         row.fecha_entrega_email !== null
-                    "
-                  >
+                    ">
                     <el-tooltip
                       content="Email"
                       effect="light"
@@ -121,14 +136,12 @@
                       <i class="tim-icons icon-email-85"></i>
                     </el-tooltip>
                   </div>
-                  <div
-                    v-else-if="
+                  <div v-else-if="
                       row.fecha_recepcion !== null &&
                         row.fecha_entrega_original !== null &&
                         row.fecha_entrega_correo !== null &&
                         row.fecha_entrega_email === null
-                    "
-                  >
+                    ">
                     <el-tooltip
                       content="Entregada"
                       effect="light"
@@ -147,14 +160,12 @@
                       <i class="tim-icons icon-send"></i>
                     </el-tooltip>
                   </div>
-                  <div
-                    v-else-if="
+                  <div v-else-if="
                       row.fecha_recepcion !== null &&
                         row.fecha_entrega_original !== null &&
                         row.fecha_entrega_correo === null &&
                         row.fecha_entrega_email !== null
-                    "
-                  >
+                    ">
                     <el-tooltip
                       content="Entregada"
                       effect="light"
@@ -173,14 +184,12 @@
                       <i class="tim-icons icon-email-85"></i>
                     </el-tooltip>
                   </div>
-                  <div
-                    v-else-if="
+                  <div v-else-if="
                       row.fecha_recepcion !== null &&
                         row.fecha_entrega_original === null &&
                         row.fecha_entrega_correo !== null &&
                         row.fecha_entrega_email !== null
-                    "
-                  >
+                    ">
                     <el-tooltip
                       content="Enviada por Correo"
                       effect="light"
@@ -199,14 +208,12 @@
                       <i class="tim-icons icon-email-85"></i>
                     </el-tooltip>
                   </div>
-                  <div
-                    v-else-if="
+                  <div v-else-if="
                       row.fecha_recepcion !== null &&
                         row.fecha_entrega_original !== null &&
                         row.fecha_entrega_correo !== null &&
                         row.fecha_entrega_email !== null
-                    "
-                  >
+                    ">
                     <el-tooltip
                       content="Entregada"
                       effect="light"
@@ -248,7 +255,11 @@
                   <div v-else>PF/RP</div>
                 </div>
               </el-table-column>
-              <el-table-column align="right" label="Actions" :min-width="115">
+              <el-table-column
+                align="right"
+                label="Actions"
+                :min-width="115"
+              >
                 <div slot-scope="props">
                   <el-tooltip
                     content="Editar"
@@ -256,12 +267,10 @@
                     :open-delay="300"
                     placement="top"
                   >
-                    <router-link
-                      :to="{
+                    <router-link :to="{
                         name: 'Editar Poliza',
                         params: { numero_solicitud: props.row.numero_solicitud }
-                      }"
-                    >
+                      }">
                       <base-button
                         class="edit btn-link"
                         type="warning"
@@ -385,7 +394,7 @@ export default {
       http
         .load('polizas')
         .then(r => {
-          polizas = r.data.data;
+          polizas = r.data;
           polizas.forEach(poliza => {
             poliza.vigencia_desde = format(poliza.vigencia_desde, 'DD/MM/YYYY');
           });
@@ -408,22 +417,22 @@ export default {
     },
     cargarCompanias() {
       http.load('administracion/companias').then(response => {
-        this.companias = response.data.data;
+        this.companias = response.data;
       });
     },
     cargarClientes() {
       http.load('clientes').then(response => {
-        this.clientes = response.data.data;
+        this.clientes = response.data;
       });
     },
     cargarEstadoPolizas() {
       http.load('estadopolizas').then(response => {
-        this.estados = response.data.data;
+        this.estados = response.data;
       });
     },
     cargarFormaPagos() {
       http.load('formapagos').then(response => {
-        this.forma_pagos = response.data.data;
+        this.forma_pagos = response.data;
       });
     },
     closeModalRenovarAutomotor() {
@@ -441,18 +450,18 @@ export default {
       http
         .loadOne('polizas', id)
         .then(r => {
-          this.poliza = r.data.data[0];
+          this.poliza = r.data;
         })
         .then(() => {
           http
             .loadOne('cobertura/compania', this.poliza.compania_id)
             .then(r => {
-              this.coberturas = r.data.data;
+              this.coberturas = r.data;
             });
         })
         .then(() => {
           http.loadOne('/polizas/busquedaPolizaId', this.poliza.id).then(r => {
-            this.riesgo_automotor = r.data.data[0];
+            this.riesgo_automotor = r.data;
             this.dataLoaded = true;
             this.showModalRenovarAutomotor();
           });
@@ -470,7 +479,7 @@ export default {
   mounted() {
     EventBus.$on('nuevoRiesgo', val => {
       http.loadOne('/polizas/busquedaPolizaId', val.poliza_id).then(r => {
-        this.riesgo_automotor = r.data.data[0];
+        this.riesgo_automotor = r.data;
         console.log(this.riesgo_automotor.id);
       });
     });

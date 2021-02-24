@@ -496,8 +496,7 @@ export default {
 
     cargarUltimoNumeroSolicitud() {
       http.load('numerosolicitud').then(response => {
-        this.poliza.numero_solicitud =
-          response.data.data[0].numero_solicitud + 1;
+        this.poliza.numero_solicitud = response.data[0].numero_solicitud + 1;
       });
     },
     crearPoliza() {
@@ -518,34 +517,34 @@ export default {
     },
     cargarClientes() {
       http.load('clientes').then(response => {
-        this.clientes = response.data.data;
+        this.clientes = response.data;
       });
     },
     cargarTipo_Riesgos() {
       http.load('tiporiesgo').then(response => {
-        this.tipo_riesgos = response.data.data;
+        this.tipo_riesgos = response.data;
       });
     },
     cargarTipo_Vigencias() {
       http.load('tipovigencia').then(response => {
-        this.tipo_vigencias = response.data.data;
+        this.tipo_vigencias = response.data;
       });
     },
     cargarCompanias() {
       http.load('administracion/companias').then(response => {
-        this.companias = response.data.data;
+        this.companias = response.data;
       });
     },
     cargarFormaPagos() {
       http.load('formapagos').then(response => {
-        this.forma_pagos = response.data.data;
+        this.forma_pagos = response.data;
       });
     },
     cargarCodigos_Productor(id) {
       http
         .loadOne('codigoproductor/compania', id)
         .then(response => {
-          this.codigo_productores = response.data.data;
+          this.codigo_productores = response.data;
         })
         .catch(err => {
           console.log(err);
@@ -561,7 +560,7 @@ export default {
     buscarNumero: debounce(function() {
       if (this.poliza.numero) {
         http.search('poliza/busquedaNumero?q=' + this.poliza.numero).then(r => {
-          this.n = r.data.data;
+          this.n = r.data;
           if (this.n.length > 0) {
             this.numeroUsed = true;
           } else {

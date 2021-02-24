@@ -16,17 +16,16 @@ class SiniestroAutomotorController extends Controller
      */
     public function index()
     {
-        
-        $siniestros = SiniestroAutomotor::with(['polizas.clientes','polizas.companias'])->get();
 
-        return SiniestroAutomotorsResource::collection($siniestros);
+        $siniestros = SiniestroAutomotor::with(['polizas.clientes', 'polizas.companias'])->get();
 
+        return $siniestros;
     }
     public function indexFiltrado($poliza_id)
     {
         $siniestros = SiniestroAutomotor::where('poliza_id', $poliza_id)->get();
 
-        return SiniestroAutomotorsResource::collection($siniestros);
+        return $siniestros;
     }
 
     /**
@@ -48,7 +47,7 @@ class SiniestroAutomotorController extends Controller
     public function store(Request $request)
     {
         // $this->validate($request, [
-     
+
         // ]);
 
         $siniestro = SiniestroAutomotor::create([
@@ -84,7 +83,6 @@ class SiniestroAutomotorController extends Controller
 
 
         return new SiniestroAutomotorsResource($siniestro);
-
     }
 
     /**
@@ -126,7 +124,7 @@ class SiniestroAutomotorController extends Controller
         ]);
     }
 
-   
+
 
     /**
      * Remove the specified resource from storage.
@@ -137,9 +135,9 @@ class SiniestroAutomotorController extends Controller
     public function destroy($id)
     {
         $siniestro = SiniestroAutomotor::find($id);
-        
+
         $siniestro->delete();
 
-        return ['message'=> 'Eliminado'];
+        return ['message' => 'Eliminado'];
     }
 }

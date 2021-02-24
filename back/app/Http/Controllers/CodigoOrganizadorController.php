@@ -12,21 +12,18 @@ class CodigoOrganizadorController extends Controller
 {
     public function index()
     {
-        $codigo_organizadores = CodigoOrganizador::with('organizadores')->get();
-        return CodigoOrganizadorsResource::collection($codigo_organizadores);
+        return CodigoOrganizador::with('organizadores')->get();
     }
 
     public function show($id)
     {
-        $codigo_organizadores = CodigoOrganizador::findOrFail($id);
-        return new CodigoOrganizadorsResource($codigo_organizadores);
+        return CodigoOrganizador::findOrFail($id);
     }
 
 
     public function indexFiltrado($compania_id)
     {
-        $codigo_organizadores = CodigoOrganizador::with('organizadores')->where('compania_id', $compania_id)->get();
-        return CodigoOrganizadorsResource::collection($codigo_organizadores);
+        return CodigoOrganizador::with('organizadores')->where('compania_id', $compania_id)->get();
     }
 
     public function store(Request $request)

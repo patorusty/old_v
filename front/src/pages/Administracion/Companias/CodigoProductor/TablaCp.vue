@@ -2,13 +2,28 @@
   <card>
     <div slot="header">
       <h4 class="d-inline align-bottom text-primary">CODIGOS PRODUCTOR</h4>
-      <base-button type="primary" size="sm" class="float-right" @click="showModal">Crear</base-button>
+      <base-button
+        type="primary"
+        size="sm"
+        class="float-right"
+        @click="showModal"
+      >Crear</base-button>
     </div>
     <div class="row">
       <div class="col-sm-12">
         <el-table :data="queriedData">
-          <el-table-column min-width="80" label="Apellido" align="left" prop="productores.apellido"></el-table-column>
-          <el-table-column min-width="80" label="Nombre" align="left" prop="productores.nombre"></el-table-column>
+          <el-table-column
+            min-width="80"
+            label="Apellido"
+            align="left"
+            prop="productores.apellido"
+          ></el-table-column>
+          <el-table-column
+            min-width="80"
+            label="Nombre"
+            align="left"
+            prop="productores.nombre"
+          ></el-table-column>
           <el-table-column
             min-width="80"
             align="left"
@@ -27,15 +42,32 @@
             label="Cod. Organizador"
             prop="codigo_organizador.codigo_organizador"
           ></el-table-column>
-          <el-table-column min-width="80" align="left" label="Activo">
+          <el-table-column
+            min-width="80"
+            align="left"
+            label="Activo"
+          >
             <div slot-scope="{ row }">
               <div v-if="row.activo == true">SI</div>
               <div v-else>NO</div>
             </div>
           </el-table-column>
-          <el-table-column min-width="80" header-align="right" align="left" label="Edicion">
-            <div slot-scope="props" class="text-right table-actions">
-              <el-tooltip content="Editar" effect="light" :open-delay="300" placement="top">
+          <el-table-column
+            min-width="80"
+            header-align="right"
+            align="left"
+            label="Edicion"
+          >
+            <div
+              slot-scope="props"
+              class="text-right table-actions"
+            >
+              <el-tooltip
+                content="Editar"
+                effect="light"
+                :open-delay="300"
+                placement="top"
+              >
                 <base-button
                   @click.native="editar(props.row.id)"
                   class="edit btn-link"
@@ -46,7 +78,12 @@
                   <i class="tim-icons icon-pencil"></i>
                 </base-button>
               </el-tooltip>
-              <el-tooltip content="Eliminar" effect="light" :open-delay="300" placement="top">
+              <el-tooltip
+                content="Eliminar"
+                effect="light"
+                :open-delay="300"
+                placement="top"
+              >
                 <base-button
                   @click.native="borrar(props.row.id)"
                   class="remove btn-link"
@@ -89,7 +126,7 @@
         :total="total"
       ></base-pagination>
     </div>
-        <modal-cp
+    <modal-cp
       v-show="isModalVisibleCP"
       :modo="modoEditar"
       @close="closeModal"
@@ -138,7 +175,7 @@ export default {
   methods: {
     cargar() {
       http.loadOne(this.url, this.compania.id).then(r => {
-        this.tableData = r.data.data;
+        this.tableData = r.data;
       });
     },
     vaciarForm() {
