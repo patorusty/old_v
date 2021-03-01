@@ -9,7 +9,8 @@ class Clientes extends Model
 {
     protected $guarded = [];
 
-    public function productores() {
-       return $this->belongsTo(Productores::class, 'productor_id');
+    public function productores()
+    {
+        return $this->belongsTo(Productores::class, 'productor_id');
     }
 }

@@ -11,20 +11,16 @@ class AutomotorModeloController extends Controller
 {
     public function index()
     {
-        $automotor_modelo = AutomotorModelo::with('automotor_version')->get();
-
-        return AutomotorModelosResource::collection($automotor_modelo);
+        return AutomotorModelo::with('automotor_version')->get();
     }
     public function show($id)
     {
-        $automotor_modelo = AutomotorModelo::findOrFail($id);
-
-        return new AutomotorModelosResource($automotor_modelo);
+        return AutomotorModelo::findOrFail($id);
     }
     public function filtro($id)
     {
         $modelos = AutomotorModelo::with('automotor_marca')->where('automotor_marca_id', $id)->get();
-        return AutomotorModelosResource::collection($modelos);
+        return $modelos;
     }
 
     public function store(Request $request)
@@ -58,9 +54,9 @@ class AutomotorModeloController extends Controller
 
     public function searchModelo()
     {
-        if ($search = \Request::get('q')) {
-            $modelo = AutomotorModelo::where('nombre', $search)->get();
-        }
-        return AutomotorModelosResource::collection($modelo);
+        // if ($search = \Request::get('q')) {
+        //     $modelo = AutomotorModelo::where('nombre', $search)->get();
+        // }
+        // return AutomotorModelosResource::collection($modelo);
     }
 }
