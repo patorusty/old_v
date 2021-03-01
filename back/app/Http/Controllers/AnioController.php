@@ -11,8 +11,6 @@ class AnioController extends Controller
 {
     public function index()
     {
-        $anio = Anio::all();
-
-        return AniosResource::collection($anio);
+        return Anio::all();
     }
 }

@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div
-      class="col-12 row justify-content-center justify-content-sm-between flex-wrap"
-    >
+    <div class="col-12 row justify-content-center justify-content-sm-between flex-wrap">
       <div class="row justify-content-start ml-1">
         <div class="col-md-4">
           <el-select
@@ -59,8 +57,7 @@
           class="animation-on-hover "
           type="primary"
           @click="showModal"
-          >Crear</base-button
-        >
+        >Crear</base-button>
       </div>
     </div>
     <el-table :data="queriedData">
@@ -79,7 +76,10 @@
         prop="nombre"
         :min-width="80"
       ></el-table-column>
-      <el-table-column align="right" label="Actions">
+      <el-table-column
+        align="right"
+        label="Actions"
+      >
         <div slot-scope="props">
           <el-tooltip
             content="Editar"
@@ -198,7 +198,7 @@ export default {
   methods: {
     cargarMarcas() {
       http.load('administracion/marcas').then(r => {
-        this.marcas = r.data.data;
+        this.marcas = r.data;
       });
     },
     filtrarModelosDeMarca() {
@@ -206,11 +206,11 @@ export default {
       this.tableData = [];
       http
         .loadOne('/modelos/filtrar', this.marca_id)
-        .then(r => (this.modelos = r.data.data));
+        .then(r => (this.modelos = r.data));
     },
     filtrarVersionesDeModelo() {
       http.loadOne('/versiones/filtrar', this.modelo_id).then(r => {
-        this.tableData = r.data.data;
+        this.tableData = r.data;
         this.modeloSeleccionado = this.tableData[0];
         this.modalListo = true;
       });
@@ -234,7 +234,7 @@ export default {
       http
         .loadOne(this.url, id)
         .then(r => {
-          this.version = r.data.data;
+          this.version = r.data;
         })
         .then(() => {
           EventBus.$emit('filtrarAnios');

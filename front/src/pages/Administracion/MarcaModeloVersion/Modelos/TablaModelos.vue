@@ -40,8 +40,7 @@
           class="animation-on-hover "
           type="primary"
           @click="showModal"
-          >Crear</base-button
-        >
+        >Crear</base-button>
       </div>
     </div>
     <el-table :data="queriedData">
@@ -55,7 +54,10 @@
         prop="nombre"
         :min-width="80"
       ></el-table-column>
-      <el-table-column align="right" label="Actions">
+      <el-table-column
+        align="right"
+        label="Actions"
+      >
         <div slot-scope="props">
           <el-tooltip
             content="Editar"
@@ -169,17 +171,17 @@ export default {
   methods: {
     cargarMarcas() {
       http.load('administracion/marcas').then(r => {
-        this.marcas = r.data.data;
+        this.marcas = r.data;
       });
     },
     buscarMarca() {
       http.loadOne('administracion/marcas', this.marca_id).then(r => {
-        this.marca = r.data.data;
+        this.marca = r.data;
       });
     },
     filtrarModeloPorMarca() {
       http.loadOne('/modelos/filtrar', this.marca_id).then(r => {
-        this.tableData = r.data.data;
+        this.tableData = r.data;
         this.buscarMarca();
         this.modalListo = true;
       });
@@ -201,7 +203,7 @@ export default {
       this.showModal();
       this.modoEditar = true;
       http.loadOne(this.url, id).then(r => {
-        this.modelo = r.data.data;
+        this.modelo = r.data;
       });
     },
     borrar(id) {
