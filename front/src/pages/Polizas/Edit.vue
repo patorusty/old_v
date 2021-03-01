@@ -461,7 +461,6 @@ export default {
     cargarPoliza() {
       http.loadOne('polizas', this.numeroSolicitud).then(response => {
         this.poliza = response.data;
-        console.log(this.poliza);
         this.dataLoaded = true;
         EventBus.$emit('poliza_id', this.poliza.id);
         http

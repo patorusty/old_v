@@ -155,9 +155,9 @@ export default {
         this.tableData = r.data;
       });
       http.loadOne('/polizas/busquedaPolizaId', this.poliza.id).then(r => {
-        if (r.data.length < 1) {
-          this.isModalVisible = true;
-        }
+        // if (r.data.length < 1) {
+        //   this.isModalVisible = true;
+        // }
       });
     },
     vaciarForm() {
